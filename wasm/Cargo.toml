@@ -1,0 +1,23 @@
+[package]
+name = "alocer"
+version = "1.0.0"
+authors = ["hazae41 <hazae41@proton.me>"]
+edition = "2021"
+
+description = "WebAssembly port of encoding algorithms."
+repository = "https://github.com/hazae41/alocer-wasm"
+license = "Unlicense"
+
+[lib]
+crate-type = ["cdylib"]
+
+[profile.release]
+lto = true
+debug = false
+opt-level = 3
+
+[dependencies]
+wasm-bindgen = { version = "0.2.87", default-features = false, features = ["std"] }
+base64ct = { version = "1.6.0", default-features = false, features = ["alloc"] }
+base16ct = { version = "0.2.0", default-features = false, features = ["alloc"] }
+bs58 = { version = "0.5.0", default-features = false, features = ["alloc"] }

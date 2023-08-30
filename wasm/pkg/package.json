@@ -1,0 +1,23 @@
+{
+  "name": "alocer",
+  "collaborators": [
+    "hazae41 <hazae41@proton.me>"
+  ],
+  "description": "WebAssembly port of encoding algorithms.",
+  "version": "1.0.0",
+  "license": "Unlicense",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hazae41/alocer-wasm"
+  },
+  "files": [
+    "alocer_bg.wasm",
+    "alocer.js",
+    "alocer.d.ts"
+  ],
+  "module": "alocer.js",
+  "types": "alocer.d.ts",
+  "sideEffects": [
+    "./snippets/*"
+  ]
+}
