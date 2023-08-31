@@ -4,7 +4,7 @@ version = "1.0.0"
 authors = ["hazae41 <hazae41@proton.me>"]
 edition = "2021"
 
-description = "WebAssembly port of various encoding algorithms"
+description = "WebAssembly port of Base64, Base64URL, Base16, and Base58 encoding algorithms"
 repository = "https://github.com/hazae41/alocer-wasm"
 license = "Unlicense"
 

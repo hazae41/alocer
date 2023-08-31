@@ -5,7 +5,7 @@
 
 # Alocer
 
-WebAssembly port of various encoding algorithms
+WebAssembly port of Base64, Base64URL, Base16, and Base58 encoding algorithms
 
 ```bash
 npm i @hazae41/alocer
