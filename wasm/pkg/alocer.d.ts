@@ -100,12 +100,10 @@ export function __wbg_init (module_or_path?: InitInput | Promise<InitInput>): Pr
 
 export class Slice {
 
-  readonly ptr: number
-
-  readonly len: number
-
   constructor(ptr: number, len: number);
 
   get bytes(): Uint8Array
+
+  free(): void
 
 }

@@ -184,7 +184,7 @@ export function base16_decode_mixed(text) {
         if (r3) {
             throw takeObject(r2);
         }
-        var v2 = new Slice((r0 >>> 0) / 1, r1);
+        var v2 = new Slice(r0, r1);
         
         return v2;
     } finally {
@@ -209,7 +209,7 @@ export function base16_decode_lower(text) {
         if (r3) {
             throw takeObject(r2);
         }
-        var v2 = new Slice((r0 >>> 0) / 1, r1);
+        var v2 = new Slice(r0, r1);
         
         return v2;
     } finally {
@@ -234,7 +234,7 @@ export function base16_decode_upper(text) {
         if (r3) {
             throw takeObject(r2);
         }
-        var v2 = new Slice((r0 >>> 0) / 1, r1);
+        var v2 = new Slice(r0, r1);
         
         return v2;
     } finally {
@@ -282,7 +282,7 @@ export function base64url_decode(text) {
         if (r3) {
             throw takeObject(r2);
         }
-        var v2 = new Slice((r0 >>> 0) / 1, r1);
+        var v2 = new Slice(r0, r1);
         
         return v2;
     } finally {
@@ -330,7 +330,7 @@ export function base64_decode(text) {
         if (r3) {
             throw takeObject(r2);
         }
-        var v2 = new Slice((r0 >>> 0) / 1, r1);
+        var v2 = new Slice(r0, r1);
         
         return v2;
     } finally {
@@ -378,7 +378,7 @@ export function base58_decode(text) {
         if (r3) {
             throw takeObject(r2);
         }
-        var v2 = new Slice((r0 >>> 0) / 1, r1);
+        var v2 = new Slice(r0, r1);
         
         return v2;
     } finally {
@@ -489,13 +489,22 @@ export class Slice {
   constructor(ptr, len) {
     this.ptr = ptr
     this.len = len
+    this.start = (ptr >>> 0) / 1
+    this.end = this.start + len
   }
 
   /**
    * @returns {Uint8Array}
    */
   get bytes() {
-    return getUint8Memory0().subarray(this.ptr, this.ptr + this.len)
+    return getUint8Memory0().subarray(this.start, this.end)
+  }
+
+  /**
+   * @returns {void}
+   **/
+  free() {
+    wasm.__wbindgen_free(this.ptr, this.len * 1);
   }
 
 }
