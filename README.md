@@ -21,7 +21,7 @@ npm i @hazae41/alocer
 
 ## Features
 - Reproducible building
-- Pre-bundled to Uint8Array
+- Pre-bundled and streamed
 - Zero-copy memory slices
 
 ## Building
