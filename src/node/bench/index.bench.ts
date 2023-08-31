@@ -9,10 +9,10 @@ initSyncBundledOnce()
   const samples = 1_000_000
   const warmup = true
 
-  const buffer = Buffer.allocUnsafe(4096)
+  const random = Buffer.allocUnsafe(4096)
   const result = Buffer.allocUnsafe(4096)
-  crypto.getRandomValues(buffer)
-  const text = base64_encode(buffer)
+  crypto.getRandomValues(random)
+  const text = base64_encode(random)
   const slice = base64_decode(text)
 
   const nocopy = benchSync("zero-copy", () => {
