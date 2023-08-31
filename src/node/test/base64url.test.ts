@@ -1,7 +1,7 @@
 import { assert, test } from "@hazae41/phobos"
 import { base64_decode, base64_encode, initSyncBundledOnce } from "mods/index.js"
 
-test("base64", async () => {
+test("base64url", async () => {
   initSyncBundledOnce()
 
   const bytes = crypto.getRandomValues(new Uint8Array(256))

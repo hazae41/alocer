@@ -30,15 +30,8 @@ export class Slice {
   /**
    * @returns {Uint8Array}
    */
-  get memory() {
-    return getUint8Memory0()
-  }
-
-  /**
-   * @returns {Uint8Array}
-   */
   get bytes() {
-    return this.memory.subarray(this.ptr, this.ptr + this.len)
+    return getUint8Memory0().subarray(this.ptr, this.ptr + this.len)
   }
 
 }`
@@ -51,8 +44,6 @@ export class Slice {
   readonly len: number
 
   constructor(ptr: number, len: number);
-
-  get memory(): Uint8Array
 
   get bytes(): Uint8Array
 
