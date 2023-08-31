@@ -2,7 +2,7 @@
   "type": "module",
   "name": "@hazae41/alocer",
   "version": "1.0.0",
-  "description": "WebAssembly port of encoding algorithms.",
+  "description": "WebAssembly port of various encoding algorithms",
   "homepage": "https://github.com/hazae41/alocer",
   "repository": "github:hazae41/alocer",
   "author": "hazae41",

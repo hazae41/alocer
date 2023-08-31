@@ -1,15 +1,11 @@
-export * from "../../../wasm/pkg/morax.js";
+export * from "../../../wasm/pkg/alocer.js";
 
-import * as Base64 from "https://deno.land/std@0.158.0/encoding/base64.ts";
-
-// @deno-types="../../../wasm/pkg/morax.d.ts"
-import { initSync } from "../../../wasm/pkg/morax.js";
-
-import { InitOutput } from "../../../wasm/pkg/morax.d.ts";
-import { wasm } from "../../../wasm/pkg/morax.wasm.js";
+// @deno-types="../../../wasm/pkg/alocer.d.ts"
+import { __wbg_init, InitOutput } from "../../../wasm/pkg/alocer.js";
+import { data } from "../../../wasm/pkg/alocer.wasm.js";
 
 let output: InitOutput | undefined = undefined
 
-export function initSyncBundledOnce() {
-  return output ??= initSync(Base64.decode(wasm))
+export async function initBundledOnce() {
+  return output ??= await __wbg_init(data)
 }
