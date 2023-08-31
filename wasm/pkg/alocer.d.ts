@@ -96,7 +96,7 @@ export function initSync(module: SyncInitInput): InitOutput;
 *
 * @returns {Promise<InitOutput>}
 */
-export default function __wbg_init (module_or_path?: InitInput | Promise<InitInput>): Promise<InitOutput>;
+export function __wbg_init (module_or_path?: InitInput | Promise<InitInput>): Promise<InitOutput>;
 
 export class Slice {
 

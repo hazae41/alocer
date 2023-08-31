@@ -1,8 +1,8 @@
 import { assert, test } from "@hazae41/phobos"
-import { base16_decode_lower, base16_encode_lower, initSyncBundledOnce } from "mods/index.js"
+import { base16_decode_lower, base16_encode_lower, initBundledOnce } from "mods/index.js"
 
 test("base16", async () => {
-  initSyncBundledOnce()
+  await initBundledOnce()
 
   const bytes = crypto.getRandomValues(new Uint8Array(256))
 

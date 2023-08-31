@@ -1,11 +1,9 @@
-import { benchSync } from "@hazae41/deimos"
-import { base58 } from "@scure/base"
-import { initSyncBundledOnce } from "index.js"
-import { base16_decode_lower, base16_encode_lower, base58_decode, base58_encode, base64_decode, base64_encode, base64url_decode, base64url_encode } from "../../../wasm/pkg/alocer.js"
+import { benchSync } from "@hazae41/deimos";
+import { base58 } from "@scure/base";
+import { initBundledOnce } from "index.js";
+import { base16_decode_lower, base16_encode_lower, base58_decode, base58_encode, base64_decode, base64_encode, base64url_decode, base64url_encode } from "../../../wasm/pkg/alocer.js";
 
-initSyncBundledOnce()
-
-{
+if (false) {
   const samples = 1_000_000
   const warmup = true
 
@@ -26,7 +24,9 @@ initSyncBundledOnce()
   nocopy.tableAndSummary(copy)
 }
 
-{
+if (false) {
+  await initBundledOnce()
+
   const samples = 1_000
   const warmup = true
 
@@ -51,7 +51,9 @@ initSyncBundledOnce()
   alocer.tableAndSummary(buffer)
 }
 
-{
+if (false) {
+  await initBundledOnce()
+
   const samples = 1_000
   const warmup = true
 
@@ -76,7 +78,9 @@ initSyncBundledOnce()
   alocer.tableAndSummary(buffer)
 }
 
-{
+if (false) {
+  await initBundledOnce()
+
   const samples = 10
   const warmup = true
 
@@ -101,7 +105,9 @@ initSyncBundledOnce()
   alocer.tableAndSummary(scure)
 }
 
-{
+if (false) {
+  await initBundledOnce()
+
   const samples = 1_000
   const warmup = true
 
