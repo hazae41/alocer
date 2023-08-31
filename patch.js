@@ -2,7 +2,7 @@ import { readFileSync, rmSync, writeFileSync } from "fs";
 
 const wasm = readFileSync("./wasm/pkg/alocer_bg.wasm")
 
-writeFileSync(`./wasm/pkg/alocer.wasm.js`, `export const data = "data:application/octet-binary;base64,${wasm.toString("base64")}";`);
+writeFileSync(`./wasm/pkg/alocer.wasm.js`, `export const data = "data:application/wasm;base64,${wasm.toString("base64")}";`);
 writeFileSync(`./wasm/pkg/alocer.wasm.d.ts`, `export const data: string;`);
 
 const script = readFileSync(`./wasm/pkg/alocer.js`, "utf8")
