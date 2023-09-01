@@ -185,7 +185,7 @@ export function base16_decode_mixed(text) {
             throw takeObject(r2);
         }
         var v2 = new Slice(r0, r1);
-        
+        ;
         return v2;
     } finally {
         wasm.__wbindgen_add_to_stack_pointer(16);
@@ -210,7 +210,7 @@ export function base16_decode_lower(text) {
             throw takeObject(r2);
         }
         var v2 = new Slice(r0, r1);
-        
+        ;
         return v2;
     } finally {
         wasm.__wbindgen_add_to_stack_pointer(16);
@@ -235,7 +235,7 @@ export function base16_decode_upper(text) {
             throw takeObject(r2);
         }
         var v2 = new Slice(r0, r1);
-        
+        ;
         return v2;
     } finally {
         wasm.__wbindgen_add_to_stack_pointer(16);
@@ -283,7 +283,7 @@ export function base64url_decode(text) {
             throw takeObject(r2);
         }
         var v2 = new Slice(r0, r1);
-        
+        ;
         return v2;
     } finally {
         wasm.__wbindgen_add_to_stack_pointer(16);
@@ -331,7 +331,7 @@ export function base64_decode(text) {
             throw takeObject(r2);
         }
         var v2 = new Slice(r0, r1);
-        
+        ;
         return v2;
     } finally {
         wasm.__wbindgen_add_to_stack_pointer(16);
@@ -379,7 +379,7 @@ export function base58_decode(text) {
             throw takeObject(r2);
         }
         var v2 = new Slice(r0, r1);
-        
+        ;
         return v2;
     } finally {
         wasm.__wbindgen_add_to_stack_pointer(16);
@@ -485,7 +485,7 @@ export class Slice {
   /**
    * @param {number} ptr 
    * @param {number} len 
-   */
+   **/
   constructor(ptr, len) {
     this.ptr = ptr
     this.len = len
@@ -495,7 +495,7 @@ export class Slice {
 
   /**
    * @returns {Uint8Array}
-   */
+   **/
   get bytes() {
     return getUint8Memory0().subarray(this.start, this.end)
   }
@@ -505,6 +505,15 @@ export class Slice {
    **/
   free() {
     wasm.__wbindgen_free(this.ptr, this.len * 1);
+  }
+
+  /**
+   * @returns {Uint8Array}
+   **/
+  read() {
+    const bytes = this.bytes.slice()
+    this.free()
+    return bytes
   }
 
 }

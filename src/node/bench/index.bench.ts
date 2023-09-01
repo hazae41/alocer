@@ -4,30 +4,30 @@ import { initBundledOnce } from "index.js";
 import { base16_decode_lower, base16_encode_lower, base58_decode, base58_encode, base64_decode, base64_encode, base64url_decode, base64url_encode } from "../../../wasm/pkg/alocer.js";
 
 if (false) {
+  await initBundledOnce()
+
   const samples = 1_000_000
   const warmup = true
 
-  const random = Buffer.allocUnsafe(4096)
-  const result = Buffer.allocUnsafe(4096)
+  const random = new Uint8Array(4096)
+  const result = new Uint8Array(4096)
   crypto.getRandomValues(random)
-  const text = base64_encode(random)
-  const slice = base64_decode(text)
 
   const nocopy = benchSync("zero-copy", () => {
-    result.set(slice.bytes, 0)
+    result.set(random, 0)
   }, { samples, warmup })
 
   const copy = benchSync("copy", () => {
-    result.set(slice.bytes.slice(), 0)
+    result.set(random.slice(), 0)
   }, { samples, warmup })
 
   nocopy.tableAndSummary(copy)
 }
 
-if (false) {
+if (true) {
   await initBundledOnce()
 
-  const samples = 1_000
+  const samples = 100
   const warmup = true
 
   const buffer = benchSync("buffer base64", () => {
@@ -44,17 +44,18 @@ if (false) {
     const result = Buffer.allocUnsafe(4096)
     crypto.getRandomValues(buffer)
     const text = base64_encode(buffer)
-    const buffer2 = base64_decode(text).bytes
-    result.set(buffer2, 0)
+    const slice = base64_decode(text)
+    result.set(slice.bytes, 0)
+    slice.free()
   }, { samples, warmup })
 
   alocer.tableAndSummary(buffer)
 }
 
-if (false) {
+if (true) {
   await initBundledOnce()
 
-  const samples = 1_000
+  const samples = 100
   const warmup = true
 
   const buffer = benchSync("buffer base16", () => {
@@ -71,17 +72,18 @@ if (false) {
     const result = Buffer.allocUnsafe(4096)
     crypto.getRandomValues(buffer)
     const text = base16_encode_lower(buffer)
-    const buffer2 = base16_decode_lower(text).bytes
-    result.set(buffer2, 0)
+    const slice = base16_decode_lower(text)
+    result.set(slice.bytes, 0)
+    slice.free()
   }, { samples, warmup })
 
   alocer.tableAndSummary(buffer)
 }
 
-if (false) {
+if (true) {
   await initBundledOnce()
 
-  const samples = 10
+  const samples = 100
   const warmup = true
 
   const scure = benchSync("scure base58", () => {
@@ -98,17 +100,18 @@ if (false) {
     const result = Buffer.allocUnsafe(1024)
     crypto.getRandomValues(buffer)
     const text = base58_encode(buffer)
-    const buffer2 = base58_decode(text).bytes
-    result.set(buffer2, 0)
+    const slice = base58_decode(text)
+    result.set(slice.bytes, 0)
+    slice.free()
   }, { samples, warmup })
 
   alocer.tableAndSummary(scure)
 }
 
-if (false) {
+if (true) {
   await initBundledOnce()
 
-  const samples = 1_000
+  const samples = 100
   const warmup = true
 
   const buffer = benchSync("buffer base64url", () => {
@@ -125,8 +128,9 @@ if (false) {
     const result = Buffer.allocUnsafe(4096)
     crypto.getRandomValues(buffer)
     const text = base64url_encode(buffer)
-    const buffer2 = base64url_decode(text).bytes
-    result.set(buffer2, 0)
+    const slice = base64url_decode(text)
+    result.set(slice.bytes, 0)
+    slice.free()
   }, { samples, warmup })
 
   alocer.tableAndSummary(buffer)
