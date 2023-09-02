@@ -5,14 +5,14 @@ const wasm = readFileSync("./wasm/pkg/alocer_bg.wasm")
 writeFileSync(`./wasm/pkg/alocer.wasm.js`, `export const data = "data:application/wasm;base64,${wasm.toString("base64")}";`);
 writeFileSync(`./wasm/pkg/alocer.wasm.d.ts`, `export const data: string;`);
 
-const script = readFileSync(`./wasm/pkg/alocer.js`, "utf8")
+const glueJs = readFileSync(`./wasm/pkg/alocer.js`, "utf8")
   .replace("async function __wbg_init", "export async function __wbg_init")
   .replace("input = new URL('alocer_bg.wasm', import.meta.url);", "throw new Error();")
   .replaceAll("getArrayU8FromWasm0(r0, r1).slice()", "new Slice(r0, r1)")
   .replaceAll("wasm.__wbindgen_free(r0, r1 * 1)", "")
   .replaceAll("@returns {Uint8Array}", "@returns {Slice}")
 
-const typing = readFileSync(`./wasm/pkg/alocer.d.ts`, "utf8")
+const glueTs = readFileSync(`./wasm/pkg/alocer.d.ts`, "utf8")
   .replace("export default function __wbg_init", "export function __wbg_init")
   .replaceAll("@returns {Uint8Array}", "@returns {Slice}")
   .replaceAll(": Uint8Array;", ": Slice;")
@@ -54,6 +54,20 @@ export class Slice {
     return bytes
   }
 
+  /**
+   * @returns {void}
+   **/
+  [Symbol.dispose]() {
+    this.free()
+  }
+
+  /**
+   * @returns {void}
+   **/
+  dispose() {
+    this.free()
+  }
+
 }`
 
 const patchTs = `
@@ -80,9 +94,19 @@ export class Slice {
    **/
   read(): Uint8Array
 
+  /**
+   * Free the bytes
+   **/
+  [Symbol.dispose](): void
+
+  /**
+   * Free the bytes
+   **/
+  dispose(): void
+
 }`
 
-writeFileSync(`./wasm/pkg/alocer.js`, script + patchJs)
-writeFileSync(`./wasm/pkg/alocer.d.ts`, typing + patchTs)
+writeFileSync(`./wasm/pkg/alocer.js`, glueJs + patchJs)
+writeFileSync(`./wasm/pkg/alocer.d.ts`, glueTs + patchTs)
 
 rmSync(`./wasm/pkg/.gitignore`, { force: true });

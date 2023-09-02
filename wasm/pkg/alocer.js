@@ -516,4 +516,18 @@ export class Slice {
     return bytes
   }
 
+  /**
+   * @returns {void}
+   **/
+  [Symbol.dispose]() {
+    this.free()
+  }
+
+  /**
+   * @returns {void}
+   **/
+  dispose() {
+    this.free()
+  }
+
 }

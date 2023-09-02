@@ -121,4 +121,14 @@ export class Slice {
    **/
   read(): Uint8Array
 
+  /**
+   * Free the bytes
+   **/
+  [Symbol.dispose](): void
+
+  /**
+   * Free the bytes
+   **/
+  dispose(): void
+
 }
