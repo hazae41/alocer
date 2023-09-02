@@ -27,12 +27,12 @@ if (false) {
 if (true) {
   await initBundledOnce()
 
-  const samples = 100
+  const samples = 1000
   const warmup = true
 
   const buffer = benchSync("buffer base64", () => {
-    const buffer = Buffer.allocUnsafe(4096)
-    const result = Buffer.allocUnsafe(4096)
+    const buffer = Buffer.allocUnsafe(256)
+    const result = Buffer.allocUnsafe(256)
     crypto.getRandomValues(buffer)
     const text = buffer.toString("base64")
     const buffer2 = Buffer.from(text, "base64")
@@ -40,8 +40,8 @@ if (true) {
   }, { samples, warmup })
 
   const alocer = benchSync("alocer base64", () => {
-    const buffer = Buffer.allocUnsafe(4096)
-    const result = Buffer.allocUnsafe(4096)
+    const buffer = Buffer.allocUnsafe(256)
+    const result = Buffer.allocUnsafe(256)
     crypto.getRandomValues(buffer)
     const text = base64_encode(buffer)
     const slice = base64_decode(text)
@@ -55,12 +55,12 @@ if (true) {
 if (true) {
   await initBundledOnce()
 
-  const samples = 100
+  const samples = 1000
   const warmup = true
 
   const buffer = benchSync("buffer base16", () => {
-    const buffer = Buffer.allocUnsafe(4096)
-    const result = Buffer.allocUnsafe(4096)
+    const buffer = Buffer.allocUnsafe(256)
+    const result = Buffer.allocUnsafe(256)
     crypto.getRandomValues(buffer)
     const text = buffer.toString("hex")
     const buffer2 = Buffer.from(text, "hex")
@@ -68,8 +68,8 @@ if (true) {
   }, { samples, warmup })
 
   const alocer = benchSync("alocer base16", () => {
-    const buffer = Buffer.allocUnsafe(4096)
-    const result = Buffer.allocUnsafe(4096)
+    const buffer = Buffer.allocUnsafe(256)
+    const result = Buffer.allocUnsafe(256)
     crypto.getRandomValues(buffer)
     const text = base16_encode_lower(buffer)
     const slice = base16_decode_lower(text)
@@ -83,12 +83,12 @@ if (true) {
 if (true) {
   await initBundledOnce()
 
-  const samples = 100
+  const samples = 1000
   const warmup = true
 
   const scure = benchSync("scure base58", () => {
-    const buffer = Buffer.allocUnsafe(1024)
-    const result = Buffer.allocUnsafe(1024)
+    const buffer = Buffer.allocUnsafe(32)
+    const result = Buffer.allocUnsafe(32)
     crypto.getRandomValues(buffer)
     const text = base58.encode(buffer)
     const buffer2 = base58.decode(text)
@@ -96,8 +96,8 @@ if (true) {
   }, { samples, warmup })
 
   const alocer = benchSync("alocer base58", () => {
-    const buffer = Buffer.allocUnsafe(1024)
-    const result = Buffer.allocUnsafe(1024)
+    const buffer = Buffer.allocUnsafe(32)
+    const result = Buffer.allocUnsafe(32)
     crypto.getRandomValues(buffer)
     const text = base58_encode(buffer)
     const slice = base58_decode(text)
@@ -111,12 +111,12 @@ if (true) {
 if (true) {
   await initBundledOnce()
 
-  const samples = 100
+  const samples = 1000
   const warmup = true
 
   const buffer = benchSync("buffer base64url", () => {
-    const buffer = Buffer.allocUnsafe(4096)
-    const result = Buffer.allocUnsafe(4096)
+    const buffer = Buffer.allocUnsafe(256)
+    const result = Buffer.allocUnsafe(256)
     crypto.getRandomValues(buffer)
     const text = buffer.toString("base64url")
     const buffer2 = Buffer.from(text, "base64url")
@@ -124,8 +124,8 @@ if (true) {
   }, { samples, warmup })
 
   const alocer = benchSync("alocer base64url", () => {
-    const buffer = Buffer.allocUnsafe(4096)
-    const result = Buffer.allocUnsafe(4096)
+    const buffer = Buffer.allocUnsafe(256)
+    const result = Buffer.allocUnsafe(256)
     crypto.getRandomValues(buffer)
     const text = base64url_encode(buffer)
     const slice = base64url_decode(text)
