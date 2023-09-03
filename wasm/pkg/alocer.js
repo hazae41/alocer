@@ -523,11 +523,4 @@ export class Slice {
     this.free()
   }
 
-  /**
-   * @returns {void}
-   **/
-  dispose() {
-    this.free()
-  }
-
 }
