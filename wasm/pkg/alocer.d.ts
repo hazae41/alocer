@@ -1,3 +1,7 @@
+
+import type { Result } from "@hazae41/result"
+import type { Cursor, CursorWriteError } from "@hazae41/cursor"
+
 /* tslint:disable */
 /* eslint-disable */
 /**
@@ -98,6 +102,7 @@ export function initSync(module: SyncInitInput): InitOutput;
 */
 export function __wbg_init (module_or_path?: InitInput | Promise<InitInput>): Promise<InitOutput>;
 
+
 export class Slice {
 
   readonly ptr: number
@@ -105,6 +110,11 @@ export class Slice {
   readonly len: number
 
   constructor(ptr: number, len: number);
+
+  /**
+   * Free the bytes
+   **/
+  [Symbol.dispose](): void
 
   /**
    * Get the bytes in memory
@@ -121,9 +131,8 @@ export class Slice {
    **/
   copy(): Uint8Array
 
-  /**
-   * Free the bytes
-   **/
-  [Symbol.dispose](): void
+  trySize(): Result<number, never>
+
+  tryWrite(cursor: Cursor): Result<void, CursorWriteError>
 
 }
