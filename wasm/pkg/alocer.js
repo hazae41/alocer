@@ -521,7 +521,7 @@ export class Slice {
   /**
    * @returns {Uint8Array}
    **/
-  copy() {
+  copyAndDispose() {
     const bytes = this.bytes.slice()
     this.free()
     return bytes
