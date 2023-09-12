@@ -1,7 +1,7 @@
 import { benchSync } from "@hazae41/deimos";
 import { base58 } from "@scure/base";
 import { initBundledOnce } from "index.js";
-import { base16_decode_lower, base16_encode_lower, base58_decode, base58_encode, base64_decode, base64_encode, base64url_decode, base64url_encode } from "../../../wasm/pkg/alocer.js";
+import { base16_decode_lower, base16_encode_lower, base58_decode, base58_encode, base64_decode_padded, base64_encode_padded, base64url_decode_unpadded, base64url_encode_unpadded } from "../../../wasm/pkg/alocer.js";
 
 if (false) {
   await initBundledOnce()
@@ -43,8 +43,8 @@ if (true) {
     const buffer = Buffer.allocUnsafe(256)
     const result = Buffer.allocUnsafe(256)
     crypto.getRandomValues(buffer)
-    const text = base64_encode(buffer)
-    const slice = base64_decode(text)
+    const text = base64_encode_padded(buffer)
+    const slice = base64_decode_padded(text)
     result.set(slice.bytes, 0)
     slice.free()
   }, { samples, warmup })
@@ -127,8 +127,8 @@ if (true) {
     const buffer = Buffer.allocUnsafe(256)
     const result = Buffer.allocUnsafe(256)
     crypto.getRandomValues(buffer)
-    const text = base64url_encode(buffer)
-    const slice = base64url_decode(text)
+    const text = base64url_encode_unpadded(buffer)
+    const slice = base64url_decode_unpadded(text)
     result.set(slice.bytes, 0)
     slice.free()
   }, { samples, warmup })

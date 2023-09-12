@@ -14,8 +14,8 @@ npm i @hazae41/alocer
 [**Node Package 📦**](https://www.npmjs.com/package/@hazae41/alocer) • [**Deno Module 🦖**](https://deno.land/x/alocer) • [**Next.js CodeSandbox 🪣**](https://codesandbox.io/p/github/hazae41/alocer-example-next)
 
 ## Algorithms
-- Constant-time padded Base64 from RustCrypto (base64ct)
-- Constant-time unpadded Base64URL from RustCrypto (base64ct)
+- Constant-time Base64 from RustCrypto (base64ct)
+- Constant-time Base64URL from RustCrypto (base64ct)
 - Constant-time Base16 (Hex) from RustCrypto (base16ct)
 - Fastest Base58 from Nemo157 (bs58)
 

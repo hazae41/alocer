@@ -1,15 +1,15 @@
 import { assert, test } from "@hazae41/phobos"
-import { base64_decode, base64_encode, initBundledOnce } from "mods/index.js"
+import { base64url_decode_unpadded, base64url_encode_unpadded, initBundledOnce } from "mods/index.js"
 
 test("base64url", async () => {
   await initBundledOnce()
 
   const bytes = crypto.getRandomValues(new Uint8Array(256))
 
-  const text = base64_encode(bytes)
-  const text2 = Buffer.from(bytes).toString("base64")
+  const text = base64url_encode_unpadded(bytes)
+  const text2 = Buffer.from(bytes).toString("base64url")
 
-  const bytes2 = base64_decode(text).bytes
+  const bytes2 = base64url_decode_unpadded(text).bytes
 
   assert(text === text2)
   assert(Buffer.from(bytes2).equals(Buffer.from(bytes)))
