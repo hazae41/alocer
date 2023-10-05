@@ -30,7 +30,6 @@
     "prepare": "npm run build:dist"
   },
   "devDependencies": {
-    "@hazae41/cursor": "^1.1.26",
     "@hazae41/deimos": "^1.0.6",
     "@hazae41/phobos": "^1.0.10",
     "@rollup/plugin-typescript": "^11.1.4",
@@ -70,7 +69,6 @@
     "deno"
   ],
   "dependencies": {
-    "@hazae41/box": "^1.0.4",
-    "@hazae41/result": "^1.1.4"
+    "@hazae41/box": "^1.0.4"
   }
 }
