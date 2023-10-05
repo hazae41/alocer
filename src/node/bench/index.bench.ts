@@ -1,3 +1,4 @@
+import { Box, Copied } from "@hazae41/box";
 import { benchSync } from "@hazae41/deimos";
 import { base58 } from "@scure/base";
 import { initBundledOnce } from "index.js";
@@ -43,7 +44,7 @@ if (true) {
     const buffer = Buffer.allocUnsafe(256)
     const result = Buffer.allocUnsafe(256)
     crypto.getRandomValues(buffer)
-    const text = base64_encode_padded(buffer)
+    const text = base64_encode_padded(new Box(new Copied(buffer)))
     const slice = base64_decode_padded(text)
     result.set(slice.bytes, 0)
     slice.free()
@@ -71,7 +72,7 @@ if (true) {
     const buffer = Buffer.allocUnsafe(256)
     const result = Buffer.allocUnsafe(256)
     crypto.getRandomValues(buffer)
-    const text = base16_encode_lower(buffer)
+    const text = base16_encode_lower(new Box(new Copied(buffer)))
     const slice = base16_decode_lower(text)
     result.set(slice.bytes, 0)
     slice.free()
@@ -99,7 +100,7 @@ if (true) {
     const buffer = Buffer.allocUnsafe(32)
     const result = Buffer.allocUnsafe(32)
     crypto.getRandomValues(buffer)
-    const text = base58_encode(buffer)
+    const text = base58_encode(new Box(new Copied(buffer)))
     const slice = base58_decode(text)
     result.set(slice.bytes, 0)
     slice.free()
@@ -127,7 +128,7 @@ if (true) {
     const buffer = Buffer.allocUnsafe(256)
     const result = Buffer.allocUnsafe(256)
     crypto.getRandomValues(buffer)
-    const text = base64url_encode_unpadded(buffer)
+    const text = base64url_encode_unpadded(new Box(new Copied(buffer)))
     const slice = base64url_decode_unpadded(text)
     result.set(slice.bytes, 0)
     slice.free()

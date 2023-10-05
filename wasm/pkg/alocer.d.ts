@@ -1,6 +1,5 @@
 
-import type { Result } from "@hazae41/result"
-import type { Cursor, CursorWriteError } from "@hazae41/cursor"
+import type { Box, Copiable, Copied } from "@hazae41/box"
 
 /* tslint:disable */
 /* eslint-disable */
@@ -8,7 +7,7 @@ import type { Cursor, CursorWriteError } from "@hazae41/cursor"
 * @param {Uint8Array} bytes
 * @returns {string}
 */
-export function base58_encode(bytes: Uint8Array): string;
+export function base58_encode(bytes: Box<Copiable>): string;
 /**
 * @param {string} text
 * @returns {Slice}
@@ -18,7 +17,7 @@ export function base58_decode(text: string): Slice;
 * @param {Uint8Array} bytes
 * @returns {string}
 */
-export function base64url_encode_padded(bytes: Uint8Array): string;
+export function base64url_encode_padded(bytes: Box<Copiable>): string;
 /**
 * @param {string} text
 * @returns {Slice}
@@ -28,17 +27,7 @@ export function base64url_decode_padded(text: string): Slice;
 * @param {Uint8Array} bytes
 * @returns {string}
 */
-export function base64_encode_padded(bytes: Uint8Array): string;
-/**
-* @param {string} text
-* @returns {Slice}
-*/
-export function base64_decode_padded(text: string): Slice;
-/**
-* @param {Uint8Array} bytes
-* @returns {string}
-*/
-export function base64_encode_unpadded(bytes: Uint8Array): string;
+export function base64_encode_unpadded(bytes: Box<Copiable>): string;
 /**
 * @param {string} text
 * @returns {Slice}
@@ -48,7 +37,7 @@ export function base64_decode_unpadded(text: string): Slice;
 * @param {Uint8Array} bytes
 * @returns {string}
 */
-export function base64url_encode_unpadded(bytes: Uint8Array): string;
+export function base64url_encode_unpadded(bytes: Box<Copiable>): string;
 /**
 * @param {string} text
 * @returns {Slice}
@@ -58,12 +47,22 @@ export function base64url_decode_unpadded(text: string): Slice;
 * @param {Uint8Array} bytes
 * @returns {string}
 */
-export function base16_encode_lower(bytes: Uint8Array): string;
+export function base64_encode_padded(bytes: Box<Copiable>): string;
+/**
+* @param {string} text
+* @returns {Slice}
+*/
+export function base64_decode_padded(text: string): Slice;
 /**
 * @param {Uint8Array} bytes
 * @returns {string}
 */
-export function base16_encode_upper(bytes: Uint8Array): string;
+export function base16_encode_lower(bytes: Box<Copiable>): string;
+/**
+* @param {Uint8Array} bytes
+* @returns {string}
+*/
+export function base16_encode_upper(bytes: Box<Copiable>): string;
 /**
 * @param {string} text
 * @returns {Slice}
@@ -88,12 +87,12 @@ export interface InitOutput {
   readonly base58_decode: (a: number, b: number, c: number) => void;
   readonly base64url_encode_padded: (a: number, b: number, c: number) => void;
   readonly base64url_decode_padded: (a: number, b: number, c: number) => void;
-  readonly base64_encode_padded: (a: number, b: number, c: number) => void;
-  readonly base64_decode_padded: (a: number, b: number, c: number) => void;
   readonly base64_encode_unpadded: (a: number, b: number, c: number) => void;
   readonly base64_decode_unpadded: (a: number, b: number, c: number) => void;
   readonly base64url_encode_unpadded: (a: number, b: number, c: number) => void;
   readonly base64url_decode_unpadded: (a: number, b: number, c: number) => void;
+  readonly base64_encode_padded: (a: number, b: number, c: number) => void;
+  readonly base64_decode_padded: (a: number, b: number, c: number) => void;
   readonly base16_encode_lower: (a: number, b: number, c: number) => void;
   readonly base16_encode_upper: (a: number, b: number, c: number) => void;
   readonly base16_decode_mixed: (a: number, b: number, c: number) => void;
@@ -146,17 +145,18 @@ export class Slice {
   get bytes(): Uint8Array
 
   /**
-   * Free the bytes
+   * Is the memory freed?
+   **/
+  get freed(): boolean
+
+  /**
+   * Free the bytes (do nothing if already freed)
    **/
   free(): void
 
   /**
    * Copy the bytes and free them
    **/
-  copyAndDispose(): Uint8Array
-
-  trySize(): Result<number, never>
-
-  tryWrite(cursor: Cursor): Result<void, CursorWriteError>
+  copyAndDispose(): Copied
 
 }
