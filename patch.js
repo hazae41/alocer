@@ -42,9 +42,10 @@ const zeroCopyPassJs = `function passArray8ToWasm0(arg, malloc) {
       return bytes.byteOffset
     }
 
-    const ptr = malloc(arg.inner.bytes.length * 1, 1) >>> 0;
-    getUint8Memory0().set(arg.inner.bytes, ptr / 1);
-    WASM_VECTOR_LEN = arg.inner.bytes.length;
+    const bytes = arg.get().bytes
+    const ptr = malloc(bytes.length * 1, 1) >>> 0;
+    getUint8Memory0().set(bytes, ptr / 1);
+    WASM_VECTOR_LEN = bytes.length;
     return ptr;
 }`
 
