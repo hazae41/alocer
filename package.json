@@ -9,12 +9,11 @@
   "license": "Unlicense",
   "main": "./dist/cjs/src/node/index.cjs",
   "module": "./dist/esm/src/node/index.mjs",
-  "types": "./dist/types/src/node/index.d.ts",
+  "types": "./dist/esm/src/node/index.d.ts",
   "sideEffects": false,
   "files": [
     "./dist/esm",
-    "./dist/cjs",
-    "./dist/types"
+    "./dist/cjs"
   ],
   "scripts": {
     "build:wasm": "cd wasm && rimraf pkg && wasm-pack build --target web --release && cd .. && node patch.js",
@@ -42,7 +41,7 @@
   },
   "exports": {
     ".": {
-      "types": "./dist/types/src/node/index.d.ts",
+      "types": "./dist/esm/src/node/index.d.ts",
       "import": "./dist/esm/src/node/index.mjs",
       "require": "./dist/cjs/src/node/index.cjs"
     }
