@@ -12,7 +12,7 @@ export const config = [
       sourcemap: true,
       entryFileNames: "[name].mjs",
     }],
-    plugins: [externals(), ts({ declaration: true, declarationDir: "./dist/esm" })]
+    plugins: [externals(), ts({ declaration: true, declarationDir: "./dist/esm/src/node" })]
   },
   {
     input: "./src/node/index.ts",
