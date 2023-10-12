@@ -1,8 +1,7 @@
-import { Box, Copied } from "@hazae41/box";
 import { benchSync } from "@hazae41/deimos";
 import { base58 } from "@scure/base";
 import { initBundledOnce } from "index.js";
-import { base16_decode_lower, base16_encode_lower, base58_decode, base58_encode, base64_decode_padded, base64_encode_padded, base64url_decode_unpadded, base64url_encode_unpadded } from "../../../wasm/pkg/alocer.js";
+import { Memory, base16_decode_lower, base16_encode_lower, base58_decode, base58_encode, base64_decode_padded, base64_encode_padded, base64url_decode_unpadded, base64url_encode_unpadded } from "../../../wasm/pkg/alocer.js";
 
 if (false) {
   await initBundledOnce()
@@ -44,7 +43,7 @@ if (true) {
     const buffer = Buffer.allocUnsafe(256)
     const result = Buffer.allocUnsafe(256)
     crypto.getRandomValues(buffer)
-    const text = base64_encode_padded(new Box(new Copied(buffer)))
+    const text = base64_encode_padded(new Memory(buffer))
     const slice = base64_decode_padded(text)
     result.set(slice.bytes, 0)
     slice.free()
@@ -72,7 +71,7 @@ if (true) {
     const buffer = Buffer.allocUnsafe(256)
     const result = Buffer.allocUnsafe(256)
     crypto.getRandomValues(buffer)
-    const text = base16_encode_lower(new Box(new Copied(buffer)))
+    const text = base16_encode_lower(new Memory(buffer))
     const slice = base16_decode_lower(text)
     result.set(slice.bytes, 0)
     slice.free()
@@ -100,7 +99,7 @@ if (true) {
     const buffer = Buffer.allocUnsafe(32)
     const result = Buffer.allocUnsafe(32)
     crypto.getRandomValues(buffer)
-    const text = base58_encode(new Box(new Copied(buffer)))
+    const text = base58_encode(new Memory(buffer))
     const slice = base58_decode(text)
     result.set(slice.bytes, 0)
     slice.free()
@@ -128,7 +127,7 @@ if (true) {
     const buffer = Buffer.allocUnsafe(256)
     const result = Buffer.allocUnsafe(256)
     crypto.getRandomValues(buffer)
-    const text = base64url_encode_unpadded(new Box(new Copied(buffer)))
+    const text = base64url_encode_unpadded(new Memory(buffer))
     const slice = base64url_decode_unpadded(text)
     result.set(slice.bytes, 0)
     slice.free()
