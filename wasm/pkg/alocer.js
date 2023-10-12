@@ -170,13 +170,13 @@ function passArray8ToWasm0(arg, malloc) {
 * @param {Memory} bytes
 * @returns {string}
 */
-export function base64_encode_unpadded(bytes) {
+export function base64_encode_padded(bytes) {
     let deferred1_0;
     let deferred1_1;
     try {
         const retptr = wasm.__wbindgen_add_to_stack_pointer(-16);
         _assertClass(bytes, Memory);
-        wasm.base64_encode_unpadded(retptr, bytes.__wbg_ptr);
+        wasm.base64_encode_padded(retptr, bytes.__wbg_ptr);
         var r0 = getInt32Memory0()[retptr / 4 + 0];
         var r1 = getInt32Memory0()[retptr / 4 + 1];
         deferred1_0 = r0;
@@ -192,12 +192,12 @@ export function base64_encode_unpadded(bytes) {
 * @param {string} text
 * @returns {Memory}
 */
-export function base64_decode_unpadded(text) {
+export function base64_decode_padded(text) {
     try {
         const retptr = wasm.__wbindgen_add_to_stack_pointer(-16);
         const ptr0 = passStringToWasm0(text, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
         const len0 = WASM_VECTOR_LEN;
-        wasm.base64_decode_unpadded(retptr, ptr0, len0);
+        wasm.base64_decode_padded(retptr, ptr0, len0);
         var r0 = getInt32Memory0()[retptr / 4 + 0];
         var r1 = getInt32Memory0()[retptr / 4 + 1];
         var r2 = getInt32Memory0()[retptr / 4 + 2];
@@ -368,13 +368,13 @@ export function base16_decode_upper(text) {
 * @param {Memory} bytes
 * @returns {string}
 */
-export function base64_encode_padded(bytes) {
+export function base64_encode_unpadded(bytes) {
     let deferred1_0;
     let deferred1_1;
     try {
         const retptr = wasm.__wbindgen_add_to_stack_pointer(-16);
         _assertClass(bytes, Memory);
-        wasm.base64_encode_padded(retptr, bytes.__wbg_ptr);
+        wasm.base64_encode_unpadded(retptr, bytes.__wbg_ptr);
         var r0 = getInt32Memory0()[retptr / 4 + 0];
         var r1 = getInt32Memory0()[retptr / 4 + 1];
         deferred1_0 = r0;
@@ -390,12 +390,12 @@ export function base64_encode_padded(bytes) {
 * @param {string} text
 * @returns {Memory}
 */
-export function base64_decode_padded(text) {
+export function base64_decode_unpadded(text) {
     try {
         const retptr = wasm.__wbindgen_add_to_stack_pointer(-16);
         const ptr0 = passStringToWasm0(text, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
         const len0 = WASM_VECTOR_LEN;
-        wasm.base64_decode_padded(retptr, ptr0, len0);
+        wasm.base64_decode_unpadded(retptr, ptr0, len0);
         var r0 = getInt32Memory0()[retptr / 4 + 0];
         var r1 = getInt32Memory0()[retptr / 4 + 1];
         var r2 = getInt32Memory0()[retptr / 4 + 2];

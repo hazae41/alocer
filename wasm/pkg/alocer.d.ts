@@ -14,12 +14,12 @@ export function base58_decode(text: string): Memory;
 * @param {Memory} bytes
 * @returns {string}
 */
-export function base64_encode_unpadded(bytes: Memory): string;
+export function base64_encode_padded(bytes: Memory): string;
 /**
 * @param {string} text
 * @returns {Memory}
 */
-export function base64_decode_unpadded(text: string): Memory;
+export function base64_decode_padded(text: string): Memory;
 /**
 * @param {Memory} bytes
 * @returns {string}
@@ -59,12 +59,12 @@ export function base16_decode_upper(text: string): Memory;
 * @param {Memory} bytes
 * @returns {string}
 */
-export function base64_encode_padded(bytes: Memory): string;
+export function base64_encode_unpadded(bytes: Memory): string;
 /**
 * @param {string} text
 * @returns {Memory}
 */
-export function base64_decode_padded(text: string): Memory;
+export function base64_decode_unpadded(text: string): Memory;
 /**
 * @param {Memory} bytes
 * @returns {string}
@@ -119,8 +119,8 @@ export interface InitOutput {
   readonly memory_new: (a: number, b: number) => number;
   readonly memory_ptr: (a: number) => number;
   readonly memory_len: (a: number) => number;
-  readonly base64_encode_unpadded: (a: number, b: number) => void;
-  readonly base64_decode_unpadded: (a: number, b: number, c: number) => void;
+  readonly base64_encode_padded: (a: number, b: number) => void;
+  readonly base64_decode_padded: (a: number, b: number, c: number) => void;
   readonly base64url_encode_padded: (a: number, b: number) => void;
   readonly base64url_decode_padded: (a: number, b: number, c: number) => void;
   readonly base16_encode_lower: (a: number, b: number) => void;
@@ -128,8 +128,8 @@ export interface InitOutput {
   readonly base16_decode_mixed: (a: number, b: number, c: number) => void;
   readonly base16_decode_lower: (a: number, b: number, c: number) => void;
   readonly base16_decode_upper: (a: number, b: number, c: number) => void;
-  readonly base64_encode_padded: (a: number, b: number) => void;
-  readonly base64_decode_padded: (a: number, b: number, c: number) => void;
+  readonly base64_encode_unpadded: (a: number, b: number) => void;
+  readonly base64_decode_unpadded: (a: number, b: number, c: number) => void;
   readonly base64url_encode_unpadded: (a: number, b: number) => void;
   readonly base64url_decode_unpadded: (a: number, b: number, c: number) => void;
   readonly __wbindgen_add_to_stack_pointer: (a: number) => number;
